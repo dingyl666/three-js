@@ -46,13 +46,13 @@
 
             //光源都是通过add方法插入到场景中
             //光源
-            const point = new THREE.PointLight(0x444444);
-            point.position.set(400, 200, 300); //点光源位置
+            const point = new THREE.PointLight(0xffffff);
+            point.position.set(0, 0, 300); //点光源位置
             scene.add(point); //点光源添加到场景中
             //环境光
             //环境光的颜色与网格模型的颜色进行rgb乘法运算
-            const ambient = new THREE.AmbientLight(0x444444);
-            scene.add(ambient);
+            // const ambient = new THREE.AmbientLight(0x444444);
+            // scene.add(ambient);
 
             //相机
             const width =window.innerWidth

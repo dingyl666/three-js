@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<header>
+    <script src="http://www.yanhuangxueyuan.com/3D/example/three.js"></script>
+</header>
+
+<body>
+</body>
+
+<script>
+    //自定义几何体
+    //先创建场景
+    const scene = new THREE.Scene();
+    //辅助坐标系 参数250表示坐标系大小 根据场景值大小去设置
+    const axisHelper = new THREE.AxisHelper(250)
+    scene.add(axisHelper)
+    //创建一个BufferGemometry类型集合对象
+    const geometry = new THREE.BufferGeometry();
+    //类型数组创建定点数据
+    const vertices = new Float32Array([
+        0, 0, 0, //顶点1坐标
+        50, 0, 0, //顶点2坐标
+        0, 100, 0, //顶点3坐标
+        0, 0, 10, //顶点4坐标
+        0, 0, 100, //顶点5坐标
+        50, 0, 10, //顶点6坐标
+    ])
+    //创建属性缓冲区对象
+    //3个为一组 表示1个顶点的xyz坐标
+
+    const attribue = new THREE.BufferAttribute(vertices, 3)
+    //设置集合体attributes属性的位置属性
+    geometry.attributes.position = attribue
+
+    //三角面网格渲染模式
+    // const material = new THREE.MeshBasicMaterial({
+    //     color:0x000ff,//三角颜色
+    //     side:THREE.DoubleSide //两面可见
+    // }) //材质对象
+
+    //点渲染模式
+    const material = new THREE.PointsMaterial({
+        color: 0xff0000,
+        size: 50.0 //点对象像素尺寸
+    }); //材质对象
+    //网格模型对象
+    const mesh = new THREE.Mesh(geometry, material)
+
+    const points = new THREE.Points(geometry, material); //点模型对象
+    scene.add(points); //点对象添加到场景中
+
+    //线模型
+    const materialLine = new THREE.LineBasicMaterial({
+        color:0xff0000 //线条颜色
+    })
+    //线条模型对象
+    const line = new THREE.Line(geometry,materialLine)
+    scene.add(line)
+
+    //相机
+    const width = window.innerWidth
+    const height = window.innerHeight
+    const k = width / height
+    const s = 300 //系数
+    const camera = new THREE.OrthographicCamera(-s * k, s * k, s, -s, 1, 1000);
+    camera.position.set(200, 300, 200)
+    camera.lookAt(scene.position) //相机方向
+
+    //渲染器
+    const renderer = new THREE.WebGLRenderer()
+    renderer.setSize(width, height) //渲染区域尺寸
+    renderer.setClearColor(0xb9d3ff, 1) //背景颜色
+    renderer.render(scene, camera);
+    //body元素中插入canvas对象
+    document.body.appendChild(renderer.domElement); 
+</script>
+
+</html>
