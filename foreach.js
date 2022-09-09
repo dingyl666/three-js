@@ -23,12 +23,12 @@ const arr = [1,2,3,4,5]
 
 const str = 'dyl'
 Array.prototype.slice(arr,1,4)
-console.log(arr)
+// console.log(arr)
 // console.log(Array.from(str))
 class Parent {
     name = 'parent'
     getName(props){
-        console.log(this.name,this,props)
+        // console.log(this.name,this,props)
     }
 }
 const obj = new Parent()
@@ -38,3 +38,6 @@ const callObj = {
 }
 // obj.getName(123)
 // obj.getName.call(callObj,{p1:123,p2:456})
+
+const num = Math.ceil(Math.random()*4) 
+console.log(num)
