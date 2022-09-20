@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<p></p>
+<button>+</button>
+
+<body>
+  <script>
+    const odom = document.querySelector('p')
+    const oButton = document.querySelector('button')
+    let _value;
+    const useState = (initValue) => {
+      _value = _value || initValue;
+      const setState = (newValue) => {
+        _value = newValue;
+      }
+      return [_value, setState];
+    }
+
+    const [data, setData] = useState (0)
+    oButton.onclick = () => {
+      setData(data + 1)
+      console.log(data, _value)
+      odom.innerHTML = data
+    }
+
+  </script>
+</body>
+
+</html>
