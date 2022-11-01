@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button>click</button>
+    <script>
+        const oBtn = document.querySelector('button') ;
+        const myFunc = () => {
+            console.log(111)
+        }
+
+        const fn = () => {
+            let timer = null ;
+            return () => {
+                if(!timer) {
+                timer = setTimeout(() => {
+                myFunc()
+            },1000)
+            }else{
+                console.log(222)
+                clearTimeout(timer) ;
+                timer = null ;
+            }
+        }
+        }
+        oBtn.onclick = fn()
+    </script>
+</body>
+</html>

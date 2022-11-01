@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <button>按钮</button>
+    <input />
+    <script>
+        const oBtn = document.querySelector('button');
+        const oInput = document.querySelector('input');
+
+        //防抖
+        const fn = () => {
+            let timer;
+            return (e) => {
+                clearTimeout(timer);
+                timer = setTimeout(() => {
+                    console.log(111,e)
+                }, 1000);
+            }
+        }
+        const tn = fn()
+        oInput.oninput = (e) => tn(e)
+    
+        //节流
+        const dn = () => {
+            let timer = null;
+            return () => {
+                if (!timer) {
+                    timer = setTimeout(() => {
+                        console.log(111)
+                        timer = null
+                    }, 1000)
+                }
+            }
+        }
+
+        oBtn.onclick = dn();
+    </script>
+</body>
+
+</html>
