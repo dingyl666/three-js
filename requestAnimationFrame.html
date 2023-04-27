@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding:0 ;
+        }
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            margin-bottom: 20px;
+        }
+        .box2 {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+    <p></p>
+    <div class="box2"></div>
+    <button class="start">start</button>
+    <button class="end">end</button>
+</body>
+
+<script>
+    window.onload = () => {
+        let ref = 0 ;
+        let ref2 = 0 ;
+        const oBox = document.querySelector('.box') ;
+        const oBox2 = document.querySelector('.box2') ;
+        const oStart = document.querySelector('.start') ;
+        const oEnd= document.querySelector('.end') ;
+        const animation = () => {
+            oBox.style.width = `${ref}%` ;
+            ref = requestAnimationFrame(animation)
+            console.log(ref,ref2,'111')
+        }
+        const animation2 = () => {
+            oBox2.style.width = `${ref2}%` ;
+            ref2 = requestAnimationFrame(animation2)
+            console.log(ref,ref2,'222')
+        }
+        oStart.addEventListener('click',() => {
+            requestAnimationFrame(animation)
+            requestAnimationFrame(animation2)
+        })
+        oEnd.addEventListener('click',() => {
+            cancelAnimationFrame(ref)
+            cancelAnimationFrame(ref2)
+        })
+     
+    }
+</script>
+</html>
