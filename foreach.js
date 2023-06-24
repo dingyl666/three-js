@@ -4,6 +4,7 @@ Array.prototype.forEachModel = function(fn){
     if(typeof fn !=='function'){
         throw new Error(fn+' is not a fun !')
     }
+    console.log(this,'yyy')
     const length = this.length;
     let k = 0;
     while(k<length){
@@ -17,9 +18,9 @@ Array.prototype.forEachModel = function(fn){
 }
 const arr = [1,2,3,4,5]
 
-// arr.forEachModel((item)=>{
-//     console.log(item,'iii')
-// })
+arr.forEachModel((item)=>{
+    console.log(item,'iii')
+})
 
 const str = 'dyl'
 Array.prototype.slice(arr,1,4)
@@ -40,4 +41,4 @@ const callObj = {
 // obj.getName.call(callObj,{p1:123,p2:456})
 
 const num = Math.ceil(Math.random()*4) 
-console.log(num)
+// console.log(num)
