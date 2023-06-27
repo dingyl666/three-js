@@ -2,11 +2,21 @@
 const useState = (initData) => {
     let a = initData ;
     const click = (b) => {a = b} ;
-    return (c) => {
-        
-        return a+c
+    return () => {
+        a++ ;
+        return {
+            a,
+            click
+        }
     }
 }
+
+const FF = useState(1) ;
+
+const bb = FF() ;
+const cc = FF() ;
+const dd = FF() ;
+console.log(bb,cc,dd)
 const myFunc = () => {
     const aaa = useState(1)(2) ;
     console.log(aaa,111) ;
@@ -15,7 +25,7 @@ const myFunc = () => {
 
 }
 
-myFunc() ;
+// myFunc() ;
 
 
 
