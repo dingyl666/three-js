@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #octagon {
+            background-color: red;
+            width: 250px;
+
+            height: 100px;
+
+            margin: 150px auto;
+
+            position: relative;
+
+        }
+
+        #octagon:before {
+
+            content: "";
+
+            position: absolute;
+
+            top: -75px;
+
+            width: 100px;
+
+            border-color: transparent transparent red transparent;
+
+            border-width: 0 75px 75px 75px;
+
+            border-style: solid;
+
+        }
+
+        #octagon:after {
+
+            content: "";
+
+            position: absolute;
+
+            top: 100px;
+
+            width: 100px;
+
+            border-color: red transparent transparent transparent;
+
+            border-width: 75px 75px 0 75px;
+
+            border-style: solid;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="octagon"></div>
+</body>
+<script>
+    window.onload = () => {
+        const oBox = document.querySelector('#octagon');
+        let rate = 1;
+        oBox.onclick = () => {
+            rate += 1;
+            oBox.style.transform = `rotate(${rate * 45}deg)`;
+        }
+    }
+</script>
+
+</html>
