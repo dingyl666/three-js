@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box {
+            width: 100vw;
+            height: auto;
+            text-align: center;
+        }
+
+        #canvas {
+            margin: 50px auto;
+            border: 1px solid rgba(0, 0, 0, .3);
+            box-shadow: 10px 10px 5px 5px rgba(0, 0, 0, .3);
+            background: #333;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="box">
+        <canvas id="canvas" width="800" height="600">
+            你的浏览器不支持 canvas，请升级你的浏览器。
+        </canvas>
+    </div>
+
+    <script>
+        window.onload = function () {
+
+            function randomColor() {
+                return `rgb(${Number(Math.random() * 255)},${Number(Math.random() * 255)},${Number(Math.random() * 255)})`
+            }
+            const oCanvas = document.querySelector('#canvas');
+            const ctx = oCanvas.getContext('2d');
+            let l = 50,t = 50,w = 100, h = 70;
+            oCanvas.onclick = function (e) {
+                console.log(e,'eee')
+                ctx.clearRect(0, 0, oCanvas.width, oCanvas.height);
+                if (e.offsetX >= l && e.offsetX <= l + w && e.offsetY >= t && e.offsetY <= t + h) {
+                    ctx.strokeStyle = 'red';
+                    ctx.strokeRect(l, t, w, h);
+                } else {
+                    ctx.strokeStyle = 'blue';
+                    ctx.strokeRect(l, t, w, h);
+                }
+            }
+            for (let x = 1; x < 5; x++) {
+                for (let y = 1; y < 5; y++) {
+                    // drawRect(x, y)
+                    drawO(x, y)
+                }
+            }
+
+            function drawO(x, y) {
+
+                ctx.beginPath();
+                ctx.arc(100 * x, 100 * y, 40, 0, 2 * Math.PI, false);
+                ctx.fillStyle = '#fff'
+                ctx.fill();
+            }
+            drawO()
+            function drawRect(x, y) {
+                ctx.fillStyle = randomColor();
+                ctx.fillRect(60 * x, 60 * y, 50, 50);
+            }
+            // requestAnimationFrame(fun);
+
+        }
+    </script>
+
+</body>
+
+</html>
