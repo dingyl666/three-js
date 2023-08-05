@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        @keyframes aaa {
+            form {
+                transform: scale(1);
+            }
+            to {
+                transform: scale(0);
+            }
+        }
+        .box {
+            width: 100px;
+            height: 100px;
+            border:1px solid #2f54eb ;
+            position: relative;
+            border-radius: 100%;
+            margin: 100px auto;
+            cursor: pointer;
+        }
+        .change-box {
+            width: 100px;
+            height: 100px;
+            border-radius: 100%;
+            position:absolute;
+            top: 0;
+            z-index: 1;
+            animation-duration: 1s;
+            animation-iteration-count:infinite;
+            -webkit-animation-iteration-count:infinite;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="change-box"></div>
+    </div>
+
+    <script>
+        window.onload = () => {
+            const oBox = document.querySelector('.box') ;
+            const oChangeBox = document.querySelector('.change-box') ;
+
+            oBox.onmouseover = () => {
+                oChangeBox.style.border = '1px solid #2f54eb' ;
+                oBox.style.background = '#f0f5ff' ;
+                oChangeBox.style.animation = 'aaa  1s infinite ' ;
+            }
+            oBox.onmouseout = () => {
+                oChangeBox.style.border = '' ;
+                oBox.style.background = '' ;
+                oChangeBox.style.animation = '' ;
+            }
+        }
+    </script>
+</body>
+</html>

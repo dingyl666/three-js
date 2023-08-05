@@ -1,7 +1,7 @@
 
 package main
 import "fmt"
-
+import "rsc.io/quote"
 func main()  {
 	var str string = "hello word"
 	var count int = 1
@@ -11,4 +11,5 @@ func main()  {
 	fmt.Println(str)
 	fmt.Println(count)
 	fmt.Println(num)
+	fmt.Println(quote.Go())
 }
