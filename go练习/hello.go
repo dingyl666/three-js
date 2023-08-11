@@ -2,13 +2,24 @@ package main
 
 import(
 	"fmt"
+	"rsc.io/quote"
 )
 
 
-import "rsc.io/quote"
-
+type Person struct {
+	name string
+	sex string
+	age int 
+	flag bool 
+}
 
 func main () {
+	me := Person{"dyl","男",20,true} ;
+	var me2 Person ;
+	me2 = Person{name:"ddd",}
+	fmt.Println(me2) ;
+	fmt.Println(me) ;
+	fmt.Println(me.name) ;
 	var dd int ;
 	dd = add(1,2) ;
 	x,y := ArrayTest() ;

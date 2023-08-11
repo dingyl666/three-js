@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .box {
+            margin: 100px auto;
+        }
+        .item {
+            margin: 50px 50px;
+            width: 100px;
+            height: 50px;
+            background-color: aquamarine;
+        }
+        .item2 {
+            margin: 20px 50px;
+            width: 100px;
+            height: 50px;
+            background-color: aquamarine;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h4>水平方向不存在叠加，只有垂直方向外边距会叠加 会自动取最大值作为边距 本应该是50+20  实际上却是50px</h1>
+        <div class="item">
+           margin50
+        </div>
+        <div class="item2">margin20</div>
+    </div>
+
+</body>
+</html>
