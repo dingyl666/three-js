@@ -14,6 +14,18 @@ type Person struct {
 }
 
 func main () {
+	student := Student{name:"dyl",age:20} ;
+
+	var personal Personal ;
+	personal = student ;
+
+	fmt.Printf("name:%s,age:%d",personal.getName(),personal.getAge()) ;
+	
+	var phone Phone ;
+	phone = new (NokiaPhone) ;
+	phone.call() ;
+	phone = new (IPhone) ;
+	phone.call() ;
 	me := Person{"dyl","男",20,true} ;
 	var me2 Person ;
 	me2 = Person{name:"ddd",}
@@ -66,3 +78,39 @@ for i = 0; i  < Max; i++{
 }
 fmt.Println("原数组:",a,"指针数组：",prt,*prt[0])
 }
+
+type Phone interface {
+	call()
+}
+type NokiaPhone struct {
+	name string
+}
+func (nokiaPhone NokiaPhone ) call() {
+	fmt.Println("i am NokiaPhone",nokiaPhone.name)
+}
+
+type IPhone struct {
+	name string
+}
+func (iPhone IPhone) call() {
+	fmt.Println("i am IPhone",iPhone.name)
+}
+
+type Personal interface {
+	getName() string
+	getAge() int
+}
+
+type Student struct {
+	name string ;
+	age int ;
+}
+
+func (s Student) getAge() int {
+	return s.age ;
+}
+
+func (s Student) getName() string {
+	return s.name ;
+}
+
