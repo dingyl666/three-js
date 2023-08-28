@@ -14,6 +14,8 @@ type Person struct {
 }
 
 func main() {
+
+	// createIntParent() ;
 	// 正常情况
 	// if result, errorMsg := Divide(100, 10); errorMsg == "" {
 	// 	fmt.Println("100/10 = ", result)
@@ -153,8 +155,22 @@ func Divide(varDividee, varDivider int) (result int, errorMessage string) {
 
 		errorMessage = dData.Error()
 
-		return
+		return 
 	} else {
 		return varDividee / varDivider, ""
 	}
 }
+
+func createInt() *int {
+	var aa = 0
+	return &aa
+}
+
+func createIntParent() {
+	var a *int
+	a = createInt()
+	fmt.Println(a, *a, &a)
+}
+
+
+
