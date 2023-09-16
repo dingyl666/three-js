@@ -1,21 +1,28 @@
 
 const useState = (initData) => {
     let a = initData ;
-    const click = (b) => {a = b} ;
-    return () => {
-        a++ ;
+    const setData = b => (a = b) ;
+    const getData = () => a ;
+    return function() {
         return {
-            a,
-            click
+            a:getData(),
+            click:setData
         }
     }
 }
 
-const FF = useState(1) ;
+const d = useState(1) ;
 
-const bb = FF() ;
-const cc = FF() ;
-const dd = FF() ;
+const data = d() ;
+console.log(data.a)
+data.click(2) ;
+console.log(data.a)
+data.click(3) ;
+console.log(data.a);
+
+// const bb = FF() ;
+// const cc = FF() ;
+// const dd = FF() ;
 // console.log(bb,cc,dd)
 const myFunc = () => {
     const aaa = useState(1)(2) ;
@@ -52,12 +59,12 @@ const Counter = function () {
 const Counter1 = Counter() ;
 const Counter2 = Counter() ;
 
-console.log(Counter1.value(),'counter1...'); /* logs 0 */
-console.log(Counter2.value()),'counter2...'; /* logs 0 */
-Counter1.increment();
-Counter2.decrement();
-console.log(Counter1.value(),'count1+...'); /* logs 2 */
-console.log(Counter2.value(),'count2-...'); /* logs 1 */
+// console.log(Counter1.value(),'counter1...'); /* logs 0 */
+// console.log(Counter2.value()),'counter2...'; /* logs 0 */
+// Counter1.increment();
+// Counter2.decrement();
+// console.log(Counter1.value(),'count1+...'); /* logs 2 */
+// console.log(Counter2.value(),'count2-...'); /* logs 1 */
 
 
 
