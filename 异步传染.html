@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <p id="ppp"></p>
+  <script>
+    const oP = document.getElementById('ppp');
+
+    function getUser() {
+      return fetch('http://localhost:8888/api/v1/user/list')
+    }
+    function m1() {
+      return getUser();
+    }
+    function m2() {
+      return m1();
+    }
+    function m3() {
+      return m2();
+    }
+    function main() {
+      const user = m3();
+      oP.innerHTML = user[0]?.name
+      console.log(user)
+    }
+    main();
+
+    //改变fetch函数的行为 
+
+    function run(func) {
+      let cache = [];//存储缓存结果；
+      let i = 0;//表示第几次调用fetch
+      const _originalFetch = window.fetch;
+
+      window.fetch = (...args) => {
+        //有缓存就交付缓存结果
+        if (cache[i]) {
+          if (cache[i].status === 'fulfilled') {
+            return cache[i].data;
+          }
+          else if (cache[i].status === 'rejected') {
+            throw cache[i].err;
+          }
+        }
+
+        //没有缓存就定一个，加到缓存中
+        const result = {
+          status: 'padding',
+          data: null,
+          err: null
+        };
+        cache[i++] = result;
+        //发送情求
+        const prom = _originalFetch(...args).then(res => res.json()).then(
+          res => {
+            result.status = 'fulfilled';
+            result.data = res;
+            console.log("res--->", res)
+          }, err => {
+            result.status = 'rejected';
+            result.data = err;
+            console.log("err--->", err)
+          }
+        )
+        //报错
+        throw prom;
+
+      }
+
+      try {
+        func()
+      } catch (err) {
+        //TODO handle the exception
+        if (err instanceof Promise) {
+          const reRun = () => {
+            i = 0;
+            func();
+          }
+          err.then(reRun, reRun);
+        }
+      }
+    }
+
+    run(main);
+  </script>
+</body>
+
+</html>
